@@ -1,0 +1,28 @@
+{% include 'top.html' %}
+
+<div id="content" class="container my-4">
+    <h1 class="page-title">Airport Summary</h1>
+
+    {% if airport %}
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>Number of Airports</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in airport %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-danger">No airport data available.</div>
+    {% endif %}
+</div>
+
+{% include 'end.html' %}

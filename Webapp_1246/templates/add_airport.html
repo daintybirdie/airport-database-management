@@ -1,0 +1,33 @@
+{% include 'top.html' %}
+
+<div id="content" class="container my-4">
+    <h1 class="page-title">Add Airport</h1>
+    
+    <form method="POST" action="{{url_for('add_airport')}}">
+        <div class="form-group">
+            <label for="name">Airport Name:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="iatacode">Code:</label>
+            <input type="text" class="form-control" id="iatacode" name="iatacode" required>
+        </div>
+
+        <div class="form-group">
+            <label for="city">City:</label>
+            <p class="text-muted"> (No abbreviations)</p>
+            <input type="text" class="form-control" id="city" name="city" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="country">Country:</label>
+            <p class="text-muted"> (No abbreviations)</p>
+            <input type="text" class="form-control" id="country" name="country" required>
+        </div>
+        
+        <input type="submit" class="btn btn-primary" value="Add Airport">
+    </form>
+</div>
+
+{% include 'end.html' %}

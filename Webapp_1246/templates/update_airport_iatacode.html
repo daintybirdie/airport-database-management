@@ -1,0 +1,36 @@
+{% include 'top.html' %}
+
+<div id="content" class="container my-4">
+    <h1 class="page-title">Update Airport Code</h1>
+
+    <form method="POST">
+        <div class="mb-3">
+            <label for="airport_select" class="form-label">Select Airport</label>
+            <select class="form-control" id="airport_select" name="iatacode" required>
+                <option value="">Select an airport</option>
+                {% for airport in airports %}
+                <option value="{{ airport[2] }}">{{ airport[1] }} ({{ airport[2] }})</option>  <!-- Name, IATA code, City -->
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Retrieve Airport</button>
+    </form>
+
+    {% if airport_info %}
+    <hr>
+
+    <form method="POST">
+        <input type="hidden" name="iatacode" value="{{ airport_info[2] }}">  <!-- iatacode -->
+        <div class="mb-3">
+            <p>Airport Chosen: {{airport_info[1]}}</p>
+            <p>ID: {{airport_info[0]}}</p>
+            <label for="new_iatacode" class="form-label">Current IATA Code: {{ airport_info[2] }}</label>  <!--iatacode -->
+            <p class="text-muted">Please enter the revised iata code below:</p> <!-- Instruction line -->
+            <input type="text" class="form-control" id="new_iatacode" name="new_iatacode" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update IATA Code</button>
+    </form>
+    {% endif %}
+</div>
+
+{% include 'end.html' %}

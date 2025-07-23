@@ -1,0 +1,30 @@
+{% include 'top.html' %}
+
+<div class="content">
+    <div class="container my-4">
+        <h1 class="page-title">Get Airport By Id</h1>
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="airportid">Airport Id:</label>
+                <input type="text" class="form-control" id="airportid" name="airportid" required>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Get Airport">
+        </form>
+
+        {% if airport %}
+        <div class="mt-4">
+            <h2>Airport Details</h2>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Airport ID:</strong> {{ airport[0] }}</li>
+                <li class="list-group-item"><strong>Name:</strong> {{ airport[1] }}</li>
+                <li class="list-group-item"><strong>IATA Code:</strong> {{ airport[2] }}</li>
+                <li class="list-group-item"><strong>City:</strong> {{ airport[3] }}</li>
+                <li class="list-group-item"><strong>Country:</strong> {{ airport[4] }}</li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% include 'end.html' %}

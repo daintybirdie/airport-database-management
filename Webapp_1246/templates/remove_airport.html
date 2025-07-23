@@ -1,0 +1,37 @@
+{% include 'top.html' %}
+
+<div id="content" class="container my-4">
+    <h1 class="page-title">Remove Airport</h1>
+    
+    <form method="POST">
+        <div class="form-group">
+            <label for="iatacode">Select Airport:</label>
+            <select class="form-control" id="iatacode" name="iatacode" required>
+                <option value="">Select an airport</option>
+                {% for airport in airports %}
+                <option value="{{ airport[2] }}">
+                    {{ airport[1] }} ({{ airport[2] }}), {{ airport[3] }}, {{ airport[4] }}
+                </option>                
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Select</button>
+    </form>
+
+    {% if selected_airport %}
+    <hr>
+    <h5>Confirm Removal</h5>
+    <p>Are you sure you want to remove the airport <strong>{{ selected_airport[1] }}</strong> in country <strong>{{ selected_airport[4] }}</strong>?</p>
+    
+    <form method="POST" action="{{ url_for('remove_airport_final') }}">
+        <!-- Hidden input to pass IATA code -->
+        <input type="hidden" name="iatacode" value="{{ selected_airport[2] }}">  
+        <button type="submit" class="btn btn-danger">Yes, Remove</button>
+        <a href="{{ url_for('remove_airport') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+    {% endif %}
+    
+    <a href="{{ url_for('list_airports') }}" class="btn btn-secondary mt-2">View All Airports</a>
+</div>
+
+{% include 'end.html' %}
